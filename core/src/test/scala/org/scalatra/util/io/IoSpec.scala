@@ -45,7 +45,7 @@ class IoSpec extends WordSpec with ShouldMatchers {
       try {
         copy(in, new ByteArrayOutputStream)
       }
-      catch { case ignore => }
+      catch { case ignore: Throwable => }
       isClosed should equal (true)
     }
 
@@ -58,7 +58,7 @@ class IoSpec extends WordSpec with ShouldMatchers {
         copy(in, new ByteArrayOutputStream)
         None
       }
-      catch { case ex => Some(ex) }
+      catch { case ex: Throwable => Some(ex) }
       caught should equal (Some(e))
     }
   }
@@ -90,7 +90,7 @@ class IoSpec extends WordSpec with ShouldMatchers {
         }
       }
       catch {
-        case _ => f.exists() should be (false)
+        case _: Throwable => f.exists() should be (false)
       }
     }
   }

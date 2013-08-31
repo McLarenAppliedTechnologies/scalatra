@@ -138,7 +138,7 @@ object SwaggerSerializers {
   }, {
     case x: ModelProperty =>
       val json: JValue = ("description" -> x.description) // ~ ("position" -> x.position)
-      (json merge writeDataType(x.`type`, "$ref")) merge Extraction.decompose(x.allowableValues)
+     writeDataType(x.`type`, "$ref") merge Extraction.decompose(x.allowableValues) merge json
   }))
 
   class ModelSerializer extends CustomSerializer[Model](implicit formats => ({
